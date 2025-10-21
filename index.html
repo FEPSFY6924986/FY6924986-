@@ -173,57 +173,6 @@
 
 <!-- TOC toggle behavior -->
 
-
-
- <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
-  <!-- //////////////////////////////////////////////////////////////////////////////// -->
-<!-- Placeholder for total word count -->
-<p id="totalWordCount"></p>
-<hr>
-<!-- Sidebar behavior and smooth scrolling -->
-<script>
-    (function(){
-        const openBtn = document.getElementById('toc-open');
-        const closeBtn = document.getElementById('toc-close');
-        const sidebar = document.getElementById('toc-sidebar');
-        if (!openBtn || !sidebar) return;
-
-        function openSidebar() {
-            sidebar.classList.add('open');
-            sidebar.setAttribute('aria-hidden','false');
-            openBtn.setAttribute('aria-expanded','true');
-        }
-        function closeSidebar() {
-            sidebar.classList.remove('open');
-            sidebar.setAttribute('aria-hidden','true');
-            openBtn.setAttribute('aria-expanded','false');
-        }
-
-        openBtn.addEventListener('click', function(e){ openSidebar(); e.stopPropagation(); });
-        if (closeBtn) closeBtn.addEventListener('click', function(e){ closeSidebar(); e.stopPropagation(); });
-
-        // Close when clicking outside
-        document.addEventListener('click', function(e){ if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== openBtn) closeSidebar(); });
-        // Close on Escape
-        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSidebar(); });
-
-        // Smooth scroll for TOC links
-        const links = sidebar.querySelectorAll('a[href^="#"]');
-        links.forEach(link => {
-            link.addEventListener('click', function(e){
-                const targetId = this.getAttribute('href').slice(1);
-                const target = document.getElementById(targetId);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    closeSidebar();
-                }
-            });
-        });
-    })();
-</script>
-
 </body>
 </html>
 
