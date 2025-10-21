@@ -182,5 +182,73 @@
 
 
 
+ <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
+<p id="totalWordCount"></p>
+<hr>
+<!-- Sidebar behavior and smooth scrolling -->
+<script>
+    (function(){
+        const openBtn = document.getElementById('toc-open');
+        const closeBtn = document.getElementById('toc-close');
+        const sidebar = document.getElementById('toc-sidebar');
+        if (!openBtn || !sidebar) return;
+
+        const backdrop = document.getElementById('toc-backdrop');
+        function openSidebar() {
+            // compute sidebar width so the button can move exactly the same distance
+            const rect = sidebar.getBoundingClientRect();
+            const offset = Math.round(rect.width);
+            // apply transform to button to move with sidebar (to the left)
+            openBtn.style.transition = 'transform 280ms ease';
+            openBtn.style.transform = `translateX(-${offset}px)`;
+
+            sidebar.classList.add('open');
+            if (backdrop) backdrop.classList.add('open');
+            sidebar.setAttribute('aria-hidden','false');
+            if (backdrop) backdrop.setAttribute('aria-hidden','false');
+            openBtn.setAttribute('aria-expanded','true');
+        }
+        function closeSidebar() {
+            // reset button transform
+            openBtn.style.transform = '';
+            sidebar.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('open');
+            sidebar.setAttribute('aria-hidden','true');
+            if (backdrop) backdrop.setAttribute('aria-hidden','true');
+            openBtn.setAttribute('aria-expanded','false');
+        }
+
+        openBtn.addEventListener('click', function(e){ openSidebar(); e.stopPropagation(); });
+    if (closeBtn) closeBtn.addEventListener('click', function(e){ closeSidebar(); e.stopPropagation(); });
+    if (backdrop) backdrop.addEventListener('click', function(){ closeSidebar(); });
+
+    // Close when clicking outside (fallback)
+    document.addEventListener('click', function(e){ if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== openBtn) closeSidebar(); });
+        // Close on Escape
+        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSidebar(); });
+
+        // Smooth scroll for TOC links — delegated handling so clicks always close the sidebar
+        sidebar.addEventListener('click', function(e) {
+            const a = e.target.closest('a[href^="#"]');
+            if (!a) return;
+            const href = a.getAttribute('href');
+            if (!href || href.charAt(0) !== '#') return;
+            const targetId = href.slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            // Close sidebar in any case
+            closeSidebar();
+        });
+    })();
+</script>
+
+</body>
+</html>
 
 
