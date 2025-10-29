@@ -1,1 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ENG0018 Computer Laboratory 2025/26</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            color: #222;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        h1 {
+            color: #174ea6;
+            margin-top: 16px;
+        }
+        h2 {
+            color: #3465a4;
+            margin: 0.7em 0;
+        }
+        #banner {
+            display: block;
+            margin: 32px auto 12px auto;
+            box-shadow: 0 4px 18px #bbb7;
+            border-radius: 12px;
+            max-width: 96vw;
+        }
+        #banner-diagnostic {
+            text-align: center;
+            color: #900;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+        section {
+            background: #fff;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 8px #b0b8c040;
+            padding: 24px 24px 18px 24px;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e5eb;
+            margin: 24px 0;
+        }
+        table {
+            border-collapse: collapse;
+            border-radius: 12px;
+            width: 100%;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px #e9e9f244;
+        }
+        td, th {
+            border: 1px solid #d2d6de;
+            text-align: left;
+            padding: 10px;
+            background: #f7faff;
+        }
+        th {
+            background: #e6eef8;
+            font-weight: bold;
+        }
+        tr:nth-child(even) td {
+            background-color: #eef4fa;
+        }
+        button, .toc-open-btn {
+            background: #4576e6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px #90caf988;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        button:hover, .toc-open-btn:hover {
+            background: #3466c6;
+            box-shadow: 0 4px 12px #90caf999;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .toc-open-btn {
+            position: fixed;
+            right: 18px;
+            top: 14px;
+            z-index: 1200;
+        }
+        .toc-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            max-width: 85vw;
+            background: #f7faff;
+            border-left: 2px solid #d1e0f7;
+            box-shadow: -8px 0 32px #9999bb44;
+            transform: translateX(105%);
+            opacity: 0;
+            transition: transform 280ms ease, opacity 280ms ease;
+            z-index: 1201;
+        }
+        .toc-sidebar.open {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .toc-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,32,0.28);
+            opacity: 0;
+            transition: opacity 280ms ease;
+            z-index: 1198;
+            pointer-events: none;
+        }
+        .toc-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .toc-close-btn {
+            display: block;
+            margin-left: auto;
+            margin-right: 4px;
+            margin-top: 6px;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: #555;
+            cursor: pointer;
+        }
+        .toc-sidebar nav ul {
+            list-style: disc;
+            padding-left: 22px;
+            margin-top: 10px;
+        }
+        .toc-sidebar a {
+            color: #4576e6;
+            text-decoration: none;
+            font-size: 1.08em;
+            padding: 3px 0;
+            display: inline-block;
+            transition: color 0.15s;
+        }
+        .toc-sidebar a:hover {
+            color: #174ea6;
+            text-decoration: underline;
+        }
+        #totalWordCount {
+            font-size: 1.1em;
+            color: #174ea6;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+        #last-updated {
+            font-size: 0.98em;
+            color: #555;
+            text-align: center;
+            margin: 8px 0 14px 0;
+        }
+        @media (max-width: 700px) {
+            main { padding: 0 2vw; }
+            section { padding: 16px 8px; }
+            #banner { width: 98vw; height: auto; }
+            .toc-sidebar { width: 95vw; }
+        }
+    </style>
+</head>
+<body>
+    <img id="banner" src="WebBanner2023.png" alt="Banner" width="900" height="200">
+    <div id="banner-diagnostic" style="display:none;"></div>
 
+    <h1><b>ENG0018 Computer Laboratory 2025/26</b></h1>
+    <h2>Student URN: 6924986</h2>
+    <hr>
+    <h2><b>Conference paper: The Mortality Of Surgical Robots</b></h2>
+    <hr>
+
+    <button id="toc-open" class="toc-open-btn" aria-controls="toc-sidebar" aria-expanded="false">☰ Contents</button>
+    <div id="toc-backdrop" class="toc-backdrop" aria-hidden="true"></div>
+    <aside id="toc-sidebar" class="toc-sidebar" aria-hidden="true" role="navigation">
+        <button id="toc-close" class="toc-close-btn" aria-label="Close contents">×</button>
+        <nav>
+            <ul>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#literature-review">Literature Review</a></li>
+                <li><a href="#site-description">Site Description / Case Study</a></li>
+                <li><a href="#materials-methods">Materials & Methods</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#analysis-discussion">Analysis & Discussion</a></li>
+                <li><a href="#design-recommendations">Design Recommendations</a></li>
+                <li><a href="#cost-benefit">Cost-Benefit</a></li>
+                <li><a href="#conclusions">Conclusions</a></li>
+                <li><a href="#references">References</a></li>
+                <li><a href="#appendices">Appendices</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="abstract"><h2>Abstract</h2><p>Placeholder — concise summary of the paper (150–250 words). Replace this with your abstract.</p></section>
+        <section id="introduction"><h2>Introduction</h2><p>Sugical robots are etc.</p></section>
+        <section id="literature-review"><h2>Literature Review</h2><p>Placeholder — summary of related work and methods (500–800 words).</p></section>
+        <section id="site-description"><h2>Site Description / Case Study</h2><p>Placeholder — description of the site and observed damage (300–600 words).</p></section>
+        <section id="materials-methods"><h2>Materials & Methods</h2><p>Placeholder — materials, testing and repair procedure (500–800 words).</p></section>
+        <section id="results"><h2>Results</h2><p>Placeholder — experimental/field results and tables/figures (600–1000 words).</p></section>
+        <section id="analysis-discussion"><h2>Analysis & Discussion</h2><p>Placeholder — interpretation and comparison to literature (600–1000 words).</p></section>
+        <section id="design-recommendations"><h2>Design Recommendations</h2><p>Placeholder — practical guidance and checklist (300–500 words).</p></section>
+        <section id="cost-benefit"><h2>Cost-Benefit & Life-Cycle</h2><p>Placeholder — cost estimates and life-cycle considerations (300–600 words).</p></section>
+        <section id="conclusions"><h2>Conclusions</h2><p>Placeholder — key takeaways and future work (150–300 words).</p></section>
+        <section id="references"><h2>References</h2><p>Placeholder — add your references here.</p></section>
+        <section id="appendices"><h2>Appendices</h2><p>Placeholder — raw data, extended tables, etc.</p></section>
+    </main>
+
+    <div id="last-updated">Loading last update time...</div>
+    <button id="verifyBtn" style="display: block; margin: 10px auto;">Verify Last Modified Time</button>
+    <p id="totalWordCount"></p>
+    <hr>
+
+    <script>
+        const GITHUB_USERNAME = 'nr0025';
+        const GITHUB_REPO = 'FY0025';
+
+        async function getLastUpdatedTime() {
+            const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/commits`;
+            try {
+                const response = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+                if (!response.ok) throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+                const commits = await response.json();
+                if (Array.isArray(commits) && commits.length > 0) {
+                    const lastCommitDate = new Date(commits[0].commit.committer.date);
+                    document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+                    return true;
+                }
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+                return false;
+            } catch (err) {
+                console.error('Error fetching last updated time:', err);
+                document.getElementById('last-updated').innerText = 'Error fetching update time. Check console for details.';
+                return false;
+            }
+        }
+
+        async function verifyLastUpdatedTime() {
+            document.getElementById('last-updated').innerText = 'Verifying...';
+            const ok = await getLastUpdatedTime();
+            if (ok) alert('Last modified time has been successfully verified from GitHub API.');
+            else alert('Verification failed. See message above.');
+        }
+
+        function attachBannerDiagnostics() {
+            const banner = document.getElementById('banner');
+            if (!banner) return;
+            let diag = document.getElementById('banner-diagnostic');
+            if (!diag) {
+                diag = document.createElement('div');
+                diag.id = 'banner-diagnostic';
+                diag.style.textAlign = 'center';
+                diag.style.color = '#900';
+                banner.insertAdjacentElement('afterend', diag);
+            }
+            function showDiagnostic(message) {
+                diag.textContent = message;
+                diag.style.display = 'block';
+            }
+            banner.addEventListener('load', function() { diag.style.display = 'none'; });
+            banner.addEventListener('error', function() {
+                showDiagnostic('Banner image failed to load. Ensure "WebBanner2023.png" is in the same folder as this HTML file and the filename is correct.');
+            });
+            if (banner.complete && banner.naturalWidth === 0) {
+                showDiagnostic('Banner image failed to load (cached). Check file location/permissions.');
+            }
+        }
+        function countWordsInElement(id) {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            const text = el.textContent || '';
+            if (!text.trim()) return 0;
+            return text.trim().split(/\s+/).filter(Boolean).length;
+        }
+        function displayTotalWordCount() {
+            const introductionCount = countWordsInElement('Introduction_InText');
+            const analysisCount = countWordsInElement('Analysis_InText');
+            const total = introductionCount + analysisCount;
+            const out = document.getElementById('totalWordCount');
+            if (out) out.innerText = `Total word count: ${total}`;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('verifyBtn');
+            if (btn) btn.addEventListener('click', verifyLastUpdatedTime);
+            getLastUpdatedTime();
+            displayTotalWordCount();
+            attachBannerDiagnostics();
+        });
+    </script>
+    <script>
+        (function(){
+            const openBtn = document.getElementById('toc-open');
+            const closeBtn = document.getElementById('toc-close');
+            const sidebar = document.getElementById('toc-sidebar');
+            if (!openBtn || !sidebar) return;
+            const backdrop = document.getElementById('toc-backdrop');
+            function openSidebar() {
+                const rect = sidebar.getBoundingClientRect();
+                const offset = Math.round(rect.width);
+                openBtn.style.transition = 'transform 280ms ease';
+                openBtn.style.transform = `translateX(-${offset}px)`;
+                sidebar.classList.add('open');
+                if (backdrop) backdrop.classList.add('open');
+                sidebar.setAttribute('aria-hidden','false');
+                if (backdrop) backdrop.setAttribute('aria-hidden','false');
+                openBtn.setAttribute('aria-expanded','true');
+            }
+            function closeSidebar() {
+                openBtn.style.transform = '';
+                sidebar.classList.remove('open');
+                if (backdrop) backdrop.classList.remove('open');
+                sidebar.setAttribute('aria-hidden','true');
+                if (backdrop) backdrop.setAttribute('aria-hidden','true');
+                openBtn.setAttribute('aria-expanded','false');
+            }
+            openBtn.addEventListener('click', function(e){ openSidebar(); e.stopPropagation(); });
+            if (closeBtn) closeBtn.addEventListener('click', function(e){ closeSidebar(); e.stopPropagation(); });
+            if (backdrop) backdrop.addEventListener('click', function(){ closeSidebar(); });
+            document.addEventListener('click', function(e){ if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== openBtn) closeSidebar(); });
+            document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSidebar(); });
+            sidebar.addEventListener('click', function(e) {
+                const a = e.target.closest('a[href^="#"]');
+                if (!a) return;
+                const href = a.getAttribute('href');
+                if (!href || href.charAt(0) !== '#') return;
+                const targetId = href.slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                closeSidebar();
+            });
+        })();
+    </script>
+</body>
+</html>
