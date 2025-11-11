@@ -367,7 +367,7 @@
         const introductionCount = countWordsInElement('Introduction_InText');
         const abstract = countWordsInElement('Abstract_InText');
         const Why_Surgical_Robots = countWordsInElement('Why_Surgical_Robots_InText');
-        const total = introductionCount + abstract;
+        const total = introductionCount + abstract + Why_Surgical_Robots ;
         const out = document.getElementById('totalWordCount');
         if (out) out.innerText = `Total word count: ${total}`;
     }
