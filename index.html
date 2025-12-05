@@ -371,7 +371,7 @@ tr:nth-child(even) {
         const Part6 = countWordsInElement('advantages_disadvantages_InText');
         const Part7 = countWordsInElement('Results_InText');
         const Part8 = countWordsInElement('Conclusions_InText');
-        const total = introductionCount + abstract + WhySurgicalRobots + Part4 + Part5 + Part6 + Part7 + Part8;
+        const total = introductionCount + WhySurgicalRobots + Part4 + Part5 + Part6 + Part7 + Part8;
         const out = document.getElementById('totalWordCount');
         if (out) out.innerText = `Total word count: ${total}`;
     }
